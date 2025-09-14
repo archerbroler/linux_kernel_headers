@@ -42,7 +42,7 @@ typedef __s64	Elf64_Sxword;
 
 
 /* ARM MTE memory tag segment type */
-#define PT_AARCH64_MEMTAG_MTE	(PT_LOPROC + 0x2)
+#define PT_ARM_MEMTAG_MTE	(PT_LOPROC + 0x1)
 
 /*
  * Extended Numbering

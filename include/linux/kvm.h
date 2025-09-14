@@ -445,11 +445,7 @@ struct kvm_run {
 #define KVM_SYSTEM_EVENT_RESET          2
 #define KVM_SYSTEM_EVENT_CRASH          3
 			__u32 type;
-			__u32 ndata;
-			union {
-				__u64 flags;
-				__u64 data[16];
-			};
+			__u64 flags;
 		} system_event;
 		/* KVM_EXIT_S390_STSI */
 		struct {
@@ -1148,8 +1144,6 @@ struct kvm_ppc_resize_hpt {
 #define KVM_CAP_S390_MEM_OP_EXTENSION 211
 #define KVM_CAP_PMU_CAPABILITY 212
 #define KVM_CAP_DISABLE_QUIRKS2 213
-/* #define KVM_CAP_VM_TSC_CONTROL 214 */
-#define KVM_CAP_SYSTEM_EVENT_DATA 215
 
 #ifdef KVM_CAP_IRQ_ROUTING
 
