@@ -911,18 +911,14 @@ struct hl_wait_cs_in {
 	 */
 	__u32 flags;
 
-	union {
-		struct {
-			/* Multi CS API info- valid entries in multi-CS array */
-			__u8 seq_arr_len;
-			__u8 pad[7];
-		};
+	/* Multi CS API info- valid entries in multi-CS array */
+	__u8 seq_arr_len;
+	__u8 pad[3];
 
-		/* Absolute timeout to wait for an interrupt in microseconds.
-		 * Relevant only when HL_WAIT_CS_FLAGS_INTERRUPT is set
-		 */
-		__u64 interrupt_timeout_us;
-	};
+	/* Absolute timeout to wait for an interrupt in microseconds.
+	 * Relevant only when HL_WAIT_CS_FLAGS_INTERRUPT is set
+	 */
+	__u32 interrupt_timeout_us;
 };
 
 #define HL_WAIT_CS_STATUS_COMPLETED	0
