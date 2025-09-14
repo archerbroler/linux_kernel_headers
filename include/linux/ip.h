@@ -18,7 +18,6 @@
 #ifndef _LINUX_IP_H
 #define _LINUX_IP_H
 #include <linux/types.h>
-#include <linux/stddef.h>
 #include <asm/byteorder.h>
 
 #define IPTOS_TOS_MASK		0x1E
@@ -101,10 +100,8 @@ struct iphdr {
 	__u8	ttl;
 	__u8	protocol;
 	__sum16	check;
-	__struct_group(/* no tag */, addrs, /* no attrs */,
-		__be32	saddr;
-		__be32	daddr;
-	);
+	__be32	saddr;
+	__be32	daddr;
 	/*The options start here. */
 };
 
@@ -172,6 +169,7 @@ enum
 	IPV4_DEVCONF_DROP_UNICAST_IN_L2_MULTICAST,
 	IPV4_DEVCONF_DROP_GRATUITOUS_ARP,
 	IPV4_DEVCONF_BC_FORWARDING,
+	IPV4_DEVCONF_ARP_EVICT_NOCARRIER,
 	__IPV4_DEVCONF_MAX
 };
 
