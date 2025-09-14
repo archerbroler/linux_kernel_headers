@@ -370,7 +370,7 @@ static __inline__ __u8 uac_processing_unit_bControlSize(struct uac_processing_un
 {
 	return (protocol == UAC_VERSION_1) ?
 		desc->baSourceID[desc->bNrInPins + 4] :
-		2; /* in UAC2, this value is constant */
+		desc->baSourceID[desc->bNrInPins + 6];
 }
 
 static __inline__ __u8 *uac_processing_unit_bmControls(struct uac_processing_unit_descriptor *desc,
@@ -378,7 +378,7 @@ static __inline__ __u8 *uac_processing_unit_bmControls(struct uac_processing_uni
 {
 	return (protocol == UAC_VERSION_1) ?
 		&desc->baSourceID[desc->bNrInPins + 5] :
-		&desc->baSourceID[desc->bNrInPins + 6];
+		&desc->baSourceID[desc->bNrInPins + 7];
 }
 
 static __inline__ __u8 uac_processing_unit_iProcessing(struct uac_processing_unit_descriptor *desc,
