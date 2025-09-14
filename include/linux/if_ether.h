@@ -23,6 +23,7 @@
 #define _LINUX_IF_ETHER_H
 
 #include <linux/types.h>
+#include <linux/libc-compat.h>
 
 /*
  *	IEEE 802.3 Ethernet magic constants.  The frame sizes omit the preamble
@@ -148,11 +149,6 @@
 /*
  *	This is an Ethernet frame header.
  */
-
-/* allow libcs like musl to deactivate this, glibc does not implement this. */
-#ifndef __UAPI_DEF_ETHHDR
-#define __UAPI_DEF_ETHHDR		1
-#endif
 
 #if __UAPI_DEF_ETHHDR
 struct ethhdr {
