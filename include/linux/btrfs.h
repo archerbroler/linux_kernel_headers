@@ -118,7 +118,7 @@ struct btrfs_ioctl_vol_args_v2 {
 	};
 	union {
 		char name[BTRFS_SUBVOL_NAME_MAX + 1];
-		__u64 devid;
+		u64 devid;
 	};
 };
 

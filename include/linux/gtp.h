@@ -1,5 +1,5 @@
 #ifndef _LINUX_GTP_H_
-#define _LINUX_GTP_H_
+#define _LINUX_GTP_H__
 
 enum gtp_genl_cmds {
 	GTP_CMD_NEWPDP,
