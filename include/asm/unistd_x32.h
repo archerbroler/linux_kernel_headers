@@ -308,6 +308,7 @@
 #define __NR_process_madvise (__X32_SYSCALL_BIT + 440)
 #define __NR_epoll_pwait2 (__X32_SYSCALL_BIT + 441)
 #define __NR_mount_setattr (__X32_SYSCALL_BIT + 442)
+#define __NR_quotactl_path (__X32_SYSCALL_BIT + 443)
 #define __NR_landlock_create_ruleset (__X32_SYSCALL_BIT + 444)
 #define __NR_landlock_add_rule (__X32_SYSCALL_BIT + 445)
 #define __NR_landlock_restrict_self (__X32_SYSCALL_BIT + 446)
