@@ -333,8 +333,7 @@ struct vfs_ns_cap_data {
 
 #define CAP_AUDIT_CONTROL    30
 
-/* Set or remove capabilities on files.
-   Map uid=0 into a child user namespace. */
+/* Set or remove capabilities on files */
 
 #define CAP_SETFCAP	     31
 
@@ -425,7 +424,7 @@ struct vfs_ns_cap_data {
  */
 
 #define CAP_TO_INDEX(x)     ((x) >> 5)        /* 1 << 5 == bits in __u32 */
-#define CAP_TO_MASK(x)      (1U << ((x) & 31)) /* mask for indexed __u32 */
+#define CAP_TO_MASK(x)      (1 << ((x) & 31)) /* mask for indexed __u32 */
 
 
 #endif /* _LINUX_CAPABILITY_H */
