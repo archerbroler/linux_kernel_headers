@@ -33,7 +33,6 @@
 #define CLONE_NEWNET		0x40000000	/* New network namespace */
 #define CLONE_IO		0x80000000	/* Clone io context */
 
-#ifndef __ASSEMBLY__
 /*
  * Arguments for the clone3 syscall
  */
@@ -47,7 +46,6 @@ struct clone_args {
 	__aligned_u64 stack_size;
 	__aligned_u64 tls;
 };
-#endif
 
 /*
  * Scheduling policies
