@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2006 Chelsio, Inc. All rights reserved.
+/* QLogic qedr NIC Driver
+ * Copyright (c) 2015-2016  QLogic Corporation
  *
  * This software is available to you under a choice of one of two
  * licenses.  You may choose to be licensed under the terms of the GNU
@@ -17,7 +17,7 @@
  *
  *      - Redistributions in binary form must reproduce the above
  *        copyright notice, this list of conditions and the following
- *        disclaimer in the documentation and/or other materials
+ *        disclaimer in the documentation and /or other materials
  *        provided with the distribution.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
@@ -29,48 +29,78 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef CXGB3_ABI_USER_H
-#define CXGB3_ABI_USER_H
+#ifndef __QEDR_USER_H__
+#define __QEDR_USER_H__
 
 #include <linux/types.h>
 
-#define IWCH_UVERBS_ABI_VERSION	1
+#define QEDR_ABI_VERSION		(8)
 
-/*
- * Make sure that all structs defined in this file remain laid out so
- * that they pack the same way on 32-bit and 64-bit architectures (to
- * avoid incompatibility between 32-bit userspace and 64-bit kernels).
- * In particular do not use pointer types -- pass pointers in __u64
- * instead.
- */
-struct iwch_create_cq_req {
-	__u64 user_rptr_addr;
+/* user kernel communication data structures. */
+
+struct qedr_alloc_ucontext_resp {
+	__u64 db_pa;
+	__u32 db_size;
+
+	__u32 max_send_wr;
+	__u32 max_recv_wr;
+	__u32 max_srq_wr;
+	__u32 sges_per_send_wr;
+	__u32 sges_per_recv_wr;
+	__u32 sges_per_srq_wr;
+	__u32 max_cqes;
 };
 
-struct iwch_create_cq_resp_v0 {
-	__u64 key;
-	__u32 cqid;
-	__u32 size_log2;
+struct qedr_alloc_pd_ureq {
+	__u64 rsvd1;
 };
 
-struct iwch_create_cq_resp {
-	__u64 key;
-	__u32 cqid;
-	__u32 size_log2;
-	__u32 memsize;
-	__u32 reserved;
+struct qedr_alloc_pd_uresp {
+	__u32 pd_id;
 };
 
-struct iwch_create_qp_resp {
-	__u64 key;
-	__u64 db_key;
-	__u32 qpid;
-	__u32 size_log2;
-	__u32 sq_size_log2;
-	__u32 rq_size_log2;
+struct qedr_create_cq_ureq {
+	__u64 addr;
+	__u64 len;
 };
 
-struct iwch_reg_user_mr_resp {
-	__u32 pbl_addr;
+struct qedr_create_cq_uresp {
+	__u32 db_offset;
+	__u16 icid;
 };
-#endif /* CXGB3_ABI_USER_H */
+
+struct qedr_create_qp_ureq {
+	__u32 qp_handle_hi;
+	__u32 qp_handle_lo;
+
+	/* SQ */
+	/* user space virtual address of SQ buffer */
+	__u64 sq_addr;
+
+	/* length of SQ buffer */
+	__u64 sq_len;
+
+	/* RQ */
+	/* user space virtual address of RQ buffer */
+	__u64 rq_addr;
+
+	/* length of RQ buffer */
+	__u64 rq_len;
+};
+
+struct qedr_create_qp_uresp {
+	__u32 qp_id;
+	__u32 atomic_supported;
+
+	/* SQ */
+	__u32 sq_db_offset;
+	__u16 sq_icid;
+
+	/* RQ */
+	__u32 rq_db_offset;
+	__u16 rq_icid;
+
+	__u32 rq_db2_offset;
+};
+
+#endif /* __QEDR_USER_H__ */
