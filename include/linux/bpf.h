@@ -1,4 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
 /* Copyright (c) 2011-2014 PLUMgrid, http://plumgrid.com
  *
  * This program is free software; you can redistribute it and/or
@@ -313,7 +312,7 @@ union bpf_attr {
  *     jump into another BPF program
  *     @ctx: context pointer passed to next program
  *     @prog_array_map: pointer to map which type is BPF_MAP_TYPE_PROG_ARRAY
- *     @index: 32-bit index inside array that selects specific program to run
+ *     @index: index inside array that selects specific program to run
  *     Return: 0 on success or negative error
  *
  * int bpf_clone_redirect(skb, ifindex, flags)
@@ -576,7 +575,7 @@ union bpf_attr {
  *     @map: pointer to sockmap
  *     @key: key to lookup sock in map
  *     @flags: reserved for future use
- *     Return: SK_PASS
+ *     Return: SK_REDIRECT
  *
  * int bpf_sock_map_update(skops, map, key, flags)
  *	@skops: pointer to bpf_sock_ops
@@ -787,8 +786,9 @@ struct xdp_md {
 };
 
 enum sk_action {
-	SK_DROP = 0,
-	SK_PASS,
+	SK_ABORTED = 0,
+	SK_DROP,
+	SK_REDIRECT,
 };
 
 #define BPF_TAG_SIZE	8

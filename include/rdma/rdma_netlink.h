@@ -1,4 +1,3 @@
-/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
 #ifndef _RDMA_NETLINK_H
 #define _RDMA_NETLINK_H
 
