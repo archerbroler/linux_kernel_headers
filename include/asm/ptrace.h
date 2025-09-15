@@ -7,7 +7,7 @@
 #include <asm/processor-flags.h>
 
 
-#ifndef __ASSEMBLER__
+#ifndef __ASSEMBLY__
 
 #ifdef __i386__
 /* this struct defines the way the registers are stored on the
@@ -77,6 +77,6 @@ struct pt_regs {
 
 
 
-#endif /* !__ASSEMBLER__ */
+#endif /* !__ASSEMBLY__ */
 
 #endif /* _ASM_X86_PTRACE_H */
