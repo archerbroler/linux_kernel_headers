@@ -8,9 +8,7 @@
 #define _CXL_FEATURES_H_
 
 #include <linux/types.h>
-
-typedef unsigned char __uapi_uuid_t[16];
-
+#include <uuid/uuid.h>
 
 /*
  * struct cxl_mbox_get_sup_feats_in - Get Supported Features input
@@ -58,7 +56,7 @@ struct cxl_mbox_get_sup_feats_in {
  * Get Supported Features Supported Feature Entry
  */
 struct cxl_feat_entry {
-	__uapi_uuid_t uuid;
+	uuid_t uuid;
 	__le16 id;
 	__le16 get_feat_size;
 	__le16 set_feat_size;
@@ -108,7 +106,7 @@ struct cxl_mbox_get_sup_feats_out {
  * CXL spec r3.2 section 8.2.9.6.2 Table 8-99
  */
 struct cxl_mbox_get_feat_in {
-	__uapi_uuid_t uuid;
+	uuid_t uuid;
 	__le16 offset;
 	__le16 count;
 	__u8 selection;
@@ -141,7 +139,7 @@ enum cxl_get_feat_selection {
  */
 struct cxl_mbox_set_feat_in {
 	__struct_group(cxl_mbox_set_feat_hdr, hdr, /* no attrs */,
-		__uapi_uuid_t uuid;
+		uuid_t uuid;
 		__le32 flags;
 		__le16 offset;
 		__u8 version;
