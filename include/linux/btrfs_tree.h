@@ -215,22 +215,6 @@
  */
 #define BTRFS_METADATA_ITEM_KEY	169
 
-/*
- * Special __inline__ ref key which stores the id of the subvolume which originally
- * created the extent. This subvolume owns the extent permanently from the
- * perspective of simple quotas. Needed to know which subvolume to free quota
- * usage from when the extent is deleted.
- *
- * Stored as an __inline__ ref rather to avoid wasting space on a separate item on
- * top of the existing extent item. However, unlike the other __inline__ refs,
- * there is one one owner ref per extent rather than one per extent.
- *
- * Because of this, it goes at the front of the list of __inline__ refs, and thus
- * must have a lower type value than any other __inline__ ref type (to satisfy the
- * disk format rule that __inline__ refs have non-decreasing type).
- */
-#define BTRFS_EXTENT_OWNER_REF_KEY	172
-
 #define BTRFS_TREE_BLOCK_REF_KEY	176
 
 #define BTRFS_EXTENT_DATA_REF_KEY	178
@@ -244,6 +228,14 @@
 #define BTRFS_SHARED_BLOCK_REF_KEY	182
 
 #define BTRFS_SHARED_DATA_REF_KEY	184
+
+/*
+ * Special __inline__ ref key which stores the id of the subvolume which originally
+ * created the extent. This subvolume owns the extent permanently from the
+ * perspective of simple quotas. Needed to know which subvolume to free quota
+ * usage from when the extent is deleted.
+ */
+#define BTRFS_EXTENT_OWNER_REF_KEY	188
 
 /*
  * block groups give us hints into the extent allocation trees.  Which
