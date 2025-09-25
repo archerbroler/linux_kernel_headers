@@ -62,14 +62,4 @@
 #define __counted_by(m)
 #endif
 
-#ifndef __counted_by_le
-#define __counted_by_le(m)
-#endif
-
-#ifndef __counted_by_be
-#define __counted_by_be(m)
-#endif
-
-#define __kernel_nonstring
-
 #endif /* _LINUX_STDDEF_H */
